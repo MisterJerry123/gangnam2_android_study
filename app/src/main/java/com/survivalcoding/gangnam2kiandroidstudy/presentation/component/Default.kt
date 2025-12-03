@@ -1,0 +1,76 @@
+package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults // TextFieldDefaults import 추가
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color // Color import 추가
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
+import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
+
+@Composable
+fun Default(label: String, placeholder: String, value: String, onValueChange: (String) -> Unit) {
+    Box(
+        modifier = Modifier.size(width = 315.dp, height = 81.dp)
+    ) {
+        Column(modifier = Modifier) {
+            Text(
+                modifier = Modifier.size(width = 38.dp, height = 21.dp),
+                text = label,
+                style = AppTextStyles.smallTextRegular
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            Box( // TextField를 감싸는 Box 추가
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
+                    .background(Color.White, RoundedCornerShape(12.dp)) // Box에 배경색과 둥근 모서리 적용
+                    .border(
+                        1.5.dp,
+                        AppColors.gray4,
+                        RoundedCornerShape(12.dp)
+                    ) // Box에 테두리색과 둥근 모서리 적용
+            ) {
+                TextField(
+                    modifier = Modifier.fillMaxSize(), // TextField가 Box를 가득 채우도록 설정
+                    textStyle = AppTextStyles.smallerTextRegular.copy(color = AppColors.gray4),
+                    onValueChange = onValueChange,
+                    value = value,
+                    placeholder = { // placeholder 람다 추가
+                        Text(
+                            text = placeholder,
+                            style = AppTextStyles.smallerTextRegular.copy(color = AppColors.gray4)
+                        ) // placeholder 텍스트 설정
+                    },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = AppColors.white, // TextField의 배경색을 투명하게 설정
+                        unfocusedContainerColor = AppColors.white, // TextField의 배경색을 투명하게 설정
+                        focusedIndicatorColor = AppColors.primary80, // TextField의 기본 하단 인디케이터 제거
+                        unfocusedIndicatorColor = Color.Transparent // TextField의 기본 하단 인디케이터 제거
+                    )
+                    // shape 파라미터는 Box에서 처리하므로 TextField에서는 제거합니다.
+                )
+            }
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview1() { //Default
+    Default("Label", "Placeholder", "", onValueChange = {})
+}

@@ -2,9 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -17,15 +15,17 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun SmallButton(text:String, onClick: () -> Unit) {
-    Box(modifier = Modifier
-        .size(width = 174.dp, height = 37.dp)
-        .background(color = AppColors.primary100, shape = RoundedCornerShape(10.dp))
-        .clickable(onClick = onClick),
+fun SmallButton(text: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(width = 174.dp, height = 37.dp)
+            .background(color = AppColors.primary100, shape = RoundedCornerShape(10.dp))
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
-    ){
-        Box(modifier = Modifier
-            .size(width = 114.dp, height = 17.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .size(width = 114.dp, height = 17.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(text = text, color = AppColors.white, style = AppTextStyles.smallerTextBold)
