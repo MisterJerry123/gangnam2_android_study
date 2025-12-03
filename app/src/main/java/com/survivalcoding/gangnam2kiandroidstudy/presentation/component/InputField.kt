@@ -54,7 +54,7 @@ fun InputField(label: String, placeholder: String, value: String, onValueChange:
                     },
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = AppColors.white,
-                        unfocusedTextColor = AppColors.white,
+                        unfocusedContainerColor = AppColors.white,
                         focusedBorderColor = AppColors.primary80,
                         unfocusedBorderColor = AppColors.gray4,
                     )
