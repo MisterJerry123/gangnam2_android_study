@@ -1,6 +1,7 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -37,11 +38,7 @@ fun InputField(label: String, placeholder: String, value: String, onValueChange:
                     .fillMaxWidth()
                     .height(55.dp)
                     .background(Color.White, RoundedCornerShape(12.dp)) // Box에 배경색과 둥근 모서리 적용
-//                    .border(
-//                        1.5.dp,
-//                        AppColors.gray4,
-//                        RoundedCornerShape(12.dp)
-//                    ) // Box에 테두리색과 둥근 모서리 적용
+
             ) {
                 OutlinedTextField(
                     modifier = Modifier.fillMaxSize(), // TextField가 Box를 가득 채우도록 설정
@@ -56,9 +53,9 @@ fun InputField(label: String, placeholder: String, value: String, onValueChange:
                     },
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = AppColors.white,
-                        unfocusedContainerColor = AppColors.white,
-                        focusedIndicatorColor = AppColors.primary80,
-                        unfocusedIndicatorColor = AppColors.gray4
+                        unfocusedTextColor = AppColors.white,
+                        focusedBorderColor = AppColors.primary80,
+                        unfocusedBorderColor = AppColors.gray4,
                     )
                 )
             }
