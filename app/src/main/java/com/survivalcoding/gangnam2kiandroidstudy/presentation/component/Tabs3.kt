@@ -19,7 +19,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun Tab2(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit) {
+fun Tab3(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit) {
     Box(
         modifier = Modifier
             .size(width = 375.dp, height = 58.dp),
@@ -28,7 +28,7 @@ fun Tab2(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit)
         Row(modifier = Modifier) {
             Box(
                 modifier = Modifier
-                    .size(width = 150.dp, height = 33.dp)
+                    .size(width = 107.dp, height = 33.dp)
                     .background(
                         if (selectedIndex == 0) AppColors.primary100 else AppColors.white,
                         shape = RoundedCornerShape(10.dp)
@@ -44,21 +44,39 @@ fun Tab2(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit)
                 )
 
             }
-            Spacer(modifier = Modifier.width(15.dp))
+            Spacer(modifier = Modifier.width(7.dp))
             Box(
                 modifier = Modifier
-                    .size(width = 150.dp, height = 33.dp)
+                    .size(width = 107.dp, height = 33.dp)
                     .background(
                         color = if (selectedIndex == 1) AppColors.primary100 else AppColors.white,
                         shape = RoundedCornerShape(10.dp)
                     )
-                    .clickable { onValueChange(0) },
+                    .clickable { onValueChange(1) },
                 contentAlignment = Alignment.Center,
 
                 ) {
                 Text(
                     text = labels[1],
                     style = AppTextStyles.smallerTextBold.copy(if (selectedIndex == 1) AppColors.white else AppColors.primary80)
+                )
+            }
+            //
+            Spacer(modifier = Modifier.width(7.dp))
+            Box(
+                modifier = Modifier
+                    .size(width = 107.dp, height = 33.dp)
+                    .background(
+                        color = if (selectedIndex == 2) AppColors.primary100 else AppColors.white,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+                    .clickable { onValueChange(2) },
+                contentAlignment = Alignment.Center,
+
+                ) {
+                Text(
+                    text = labels[2],
+                    style = AppTextStyles.smallerTextBold.copy(if (selectedIndex == 2) AppColors.white else AppColors.primary80)
                 )
             }
         }
@@ -68,9 +86,10 @@ fun Tab2(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit)
 
 @Preview(showBackground = true)
 @Composable
-fun Tab2Preview() {
+fun Tab3Preview() {
     Column {
-        Tab2(listOf("Label1", "Label2"), 0, {})
-        Tab2(listOf("Label1", "Label2"), 1, {})
+        Tab3(listOf("Label1", "Label2","Label3"), 0, {})
+        Tab3(listOf("Label1", "Label2","Label3"), 1, {})
+        Tab3(listOf("Label1", "Label2","Label3"), 2, {})
     }
 }
