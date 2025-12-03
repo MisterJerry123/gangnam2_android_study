@@ -22,7 +22,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun Default(label: String, placeholder: String, value: String, onValueChange: (String) -> Unit) {
+fun InputField(label: String, placeholder: String, value: String, onValueChange: (String) -> Unit) {
     Box(
         modifier = Modifier.size(width = 315.dp, height = 81.dp)
     ) {
@@ -56,12 +56,11 @@ fun Default(label: String, placeholder: String, value: String, onValueChange: (S
                         ) // placeholder 텍스트 설정
                     },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = AppColors.white, // TextField의 배경색을 투명하게 설정
-                        unfocusedContainerColor = AppColors.white, // TextField의 배경색을 투명하게 설정
-                        focusedIndicatorColor = AppColors.primary80, // TextField의 기본 하단 인디케이터 제거
-                        unfocusedIndicatorColor = Color.Transparent // TextField의 기본 하단 인디케이터 제거
+                        focusedContainerColor = AppColors.white,
+                        unfocusedContainerColor = AppColors.white,
+                        focusedIndicatorColor = AppColors.primary80,
+                        unfocusedIndicatorColor = AppColors.gray4
                     )
-                    // shape 파라미터는 Box에서 처리하므로 TextField에서는 제거합니다.
                 )
             }
         }
@@ -71,6 +70,12 @@ fun Default(label: String, placeholder: String, value: String, onValueChange: (S
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview1() { //Default
-    Default("Label", "Placeholder", "", onValueChange = {})
+fun InputFieldPreview1() { //Default
+    InputField("Label", "Placeholder", "", onValueChange = {})
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InputFieldPreview2() { //filled
+    InputField("Label", "", "filled", onValueChange = {})
 }
