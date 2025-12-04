@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -27,6 +28,9 @@ import com.survivalcoding.gangnam2kiandroidstudy.R
 import com.survivalcoding.gangnam2kiandroidstudy.model.Recipes
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
+import androidx.compose.foundation.layout.padding // padding import 추가
+import androidx.compose.foundation.shape.CircleShape // CircleShape import 추가
+import androidx.compose.ui.graphics.Color // Color import 추가
 
 @Composable
 fun RecipeCard(recipe: Recipes) {
@@ -36,73 +40,94 @@ fun RecipeCard(recipe: Recipes) {
                 .width(30.dp)
                 .fillMaxHeight()
         )
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
-        ) {
+        Box(modifier = Modifier.weight(1f).fillMaxHeight().clip(RoundedCornerShape(12.dp))) { // Main Box, clip 추가
+            // 배경 이미지
             AsyncImage(
-                model = /*recipe.image*/R.drawable.steak,
-                contentDescription = "레시피",
+                model = recipe.image,
+                contentDescription = "레시피 배경",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.clip(shape = RoundedCornerShape(10.dp))
+                modifier = Modifier.fillMaxSize()
             )
 
-            Column(modifier = Modifier) {
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.TopEnd) {
-                    Row(
+            Column(modifier = Modifier.fillMaxSize()) { // 콘텐츠 Column, Box를 가득 채움
+                Spacer(modifier = Modifier.height(10.dp)) // 상단 여백
+                Row { // 이 Row는 별점 Box를 감싸는 역할만 함
+                    Spacer(modifier = Modifier.width(10.dp)) // 왼쪽 여백을 위해 Row 내부에 Spacer 추가
+
+                    Box(
                         modifier = Modifier
-                            .size(width = 37.dp, height = 16.dp)
+                            .fillMaxWidth()
+                            .padding(end = 10.dp), // 이 Box에 오른쪽 여백 추가
+                        contentAlignment = Alignment.TopEnd
+                    ) { // 별점 Box
+                        Row(
+                            modifier = Modifier
+                                .background(
+                                    color = AppColors.secondary20,
+                                    shape = RoundedCornerShape(20.dp)
+                                )
+                                .size(width = 37.dp, height = 16.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Spacer(modifier = Modifier.width(7.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.star),
+                                contentDescription = "별점",
+                                modifier = Modifier.size(width = 8.dp, height = 8.dp)
+                            )
+                            Spacer(modifier = Modifier.width(3.dp))
 
-
-                            .background(
-                                color = AppColors.secondary20,
-                                shape = RoundedCornerShape(20.dp)
-                            ),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Image(
-                            painter = painterResource(id = R.drawable.star),
-                            contentDescription = "별점",
-                            modifier = Modifier.size(width = 8.dp, height = 8.dp)
-                        )
-                        Spacer(modifier = Modifier.width(3.dp))
-
-                        Text(
-                            text = "4.0",
-                            modifier = Modifier,
-                            style = AppTextStyles.smallerTextRegular
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-
-
+                            Text(
+                                text = "${recipe.rating}", // 실제 레시피 평점 사용
+                                style = AppTextStyles.smallerTextRegular.copy(color = AppColors.black) // 색상 지정
+                            )
+                            Spacer(modifier = Modifier.width(7.dp))
+                        }
                     }
                 }
-                Row {
+
+                // 왼쪽 하단 텍스트 (레시피 이름, 셰프 이름)
+                Row(modifier = Modifier.fillMaxSize()) { // 전체 공간 채우고 내부 Row로 정렬
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(
                         modifier = Modifier.fillMaxHeight(),
-                        verticalArrangement = Arrangement.Bottom
+                        verticalArrangement = Arrangement.Bottom // 하단 정렬
                     ) {
                         Text(
-                            "traditional",
-                            modifier = Modifier.size(width = 200.dp, height = 42.dp)
-
-                            ,
+                            recipe.name, // 실제 레시피 이름 사용
+                            modifier = Modifier.width(200.dp),
                             style = AppTextStyles.smallTextBold.copy(color = AppColors.white)
                         )
                         Text(
-                            "By Chef",
-                            modifier = Modifier.size(width = 53.dp, height = 12.dp),
+                            "By ${recipe.chef}", // 실제 셰프 이름 사용
+                            modifier = Modifier,
                             style = AppTextStyles.smallerTextRegular.copy(color = AppColors.white)
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                     }
                 }
+            }
 
-
+            // 오른쪽 하단 텍스트 및 원 추가
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
+                Row(modifier = Modifier.padding(bottom = 10.dp)) { // 여기에 bottom padding 추가
+                    Image(painter = painterResource(R.drawable.timer), contentDescription = "알람")
+                    Spacer(modifier = Modifier.width(5.dp)) // 이미지와 텍스트 사이 간격
+                    Text(
+                        text = "30 min", // 예시로 recipe.time을 사용
+                        modifier = Modifier.width(50.dp), // 필요한 경우 너비 조절
+                        style = AppTextStyles.smallerTextRegular.copy(color = AppColors.white) // 스타일 지정
+                    )
+                    Spacer(modifier = Modifier.width(5.dp)) // 텍스트와 원 사이 간격
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp) // 24dp 크기
+                            .clip(CircleShape) // 원형으로 자르기
+                            .background(Color.White) // 흰색 배경
+                    )
+                    Spacer(modifier = Modifier.width(10.dp)) // 여기에 오른쪽 여백을 추가
+                }
             }
         }
         Spacer(
@@ -111,8 +136,6 @@ fun RecipeCard(recipe: Recipes) {
                 .fillMaxHeight()
         )
     }
-
-
 }
 
 @Preview(showBackground = true)
@@ -120,13 +143,12 @@ fun RecipeCard(recipe: Recipes) {
 fun RecipeCardPreview() {
     val recipe = Recipes(
         category = "Test",
-        chef = "Test",
+        chef = "Chef John",
         id = 1,
         image = "https://cdn.pixabay.com/photo/2017/11/10/15/04/steak-2936531_1280.jpg",
-        name = "Test",
-        rating = 4.0,
-        time = "Test"
+        name = "Grilled Steak",
+        rating = 4.5,
+        time = "30 min" // 예시 시간 추가
     )
     RecipeCard(recipe)
-
 }
