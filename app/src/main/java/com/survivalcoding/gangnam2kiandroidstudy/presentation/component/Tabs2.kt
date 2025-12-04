@@ -20,6 +20,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
 fun Tab2(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit) {
+    require(labels.size != 2) {"Tab2는 2개의 label만 필요합니다."}
     Box(
         modifier = Modifier
             .size(width = 375.dp, height = 58.dp),
