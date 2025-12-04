@@ -20,7 +20,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
 fun Tab3(labels: List<String>, selectedIndex: Int, onValueChange: (Int) -> Unit) {
-    require(labels.size != 3) { "Tab3는 3개의 label만 필요합니다." }
+    require(labels.size == 3) { "Tab3는 3개의 label만 필요합니다." }
 
     Box(
         modifier = Modifier
