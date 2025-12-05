@@ -1,6 +1,5 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -81,7 +80,7 @@ fun RatingButton(text: String, isSelected: Boolean) {
 
                     Text(
                         text = text,
-                        style = AppTextStyles.smallerTextBold.copy(color = AppColors.primary80,)
+                        style = AppTextStyles.smallerTextBold.copy(color = AppColors.primary80)
                     )
                     Spacer(modifier = Modifier.size(5.dp))
                     Image(
