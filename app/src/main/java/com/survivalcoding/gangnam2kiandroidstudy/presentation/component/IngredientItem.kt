@@ -72,7 +72,7 @@ fun IngredientItem(imageUrl: String, foodName: String, foodGram: Int) {
 
 @Preview(showBackground = true)
 @Composable
-fun IngredientItemPerview() {
+fun IngredientItemPreview() {
     Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
 
         IngredientItem(
