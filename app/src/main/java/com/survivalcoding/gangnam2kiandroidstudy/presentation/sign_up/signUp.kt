@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -34,8 +33,7 @@ fun SignUp() {
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .padding(horizontal = 30.dp)
-        , verticalArrangement = Arrangement.Center
+            .padding(horizontal = 30.dp), verticalArrangement = Arrangement.Center
     ) {
         Spacer(modifier = Modifier.height(height = 54.dp))
         Text("Create an account", modifier = Modifier, style = AppTextStyles.largeTextBold)
