@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,7 +21,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun FilterButton(text: String, isSelected: Boolean) {
+fun FilterButton(text: String, isSelected: Boolean, onClick: () -> Unit) {
     val backgroundColor = if (isSelected) AppColors.primary100 else AppColors.white
     val borderColor = if (isSelected) AppColors.primary100 else AppColors.primary80
     val textColor = if (isSelected) AppColors.white else AppColors.primary80
@@ -28,6 +29,7 @@ fun FilterButton(text: String, isSelected: Boolean) {
     Box(
         modifier = Modifier
             .size(width = 50.dp, height = 28.dp)
+            .clickable(onClick = onClick)
             .background(color = backgroundColor, shape = RoundedCornerShape(10.dp))
             .border(
                 color = borderColor,
@@ -59,8 +61,8 @@ fun FilterButton(text: String, isSelected: Boolean) {
 fun FilterButtonPreview() {
     Column {
 
-        FilterButton("Text", true)
+        FilterButton("Text", true, {})
         Spacer(modifier = Modifier.height(30.dp))
-        FilterButton("Text", false)
+        FilterButton("Text", false, {})
     }
 }
