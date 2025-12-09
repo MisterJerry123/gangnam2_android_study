@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.survivalcoding.gangnam2kiandroidstudy.Application
+import com.survivalcoding.gangnam2kiandroidstudy.RecipeAppApplication
 import com.survivalcoding.gangnam2kiandroidstudy.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.repository.SavedRecipesRepository
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +33,7 @@ class SavedRecipesViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val savedRecipeRepository =
-                    (this[APPLICATION_KEY] as Application).savedRecipesRepository
+                    (this[APPLICATION_KEY] as RecipeAppApplication).savedRecipesRepository
                 SavedRecipesViewModel(
                     savedRecipesRepository = savedRecipeRepository,
                 )
