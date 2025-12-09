@@ -71,4 +71,6 @@ dependencies {
     //직렬화
     implementation(libs.kotlinx.serialization.json)
 
+    //Icon
+    implementation(libs.androidx.compose.material.icons.extended)
 }
