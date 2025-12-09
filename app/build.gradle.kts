@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    //직렬화
+    kotlin("plugin.serialization") version "2.2.21"
+
+
 }
 
 android {
@@ -63,4 +67,8 @@ dependencies {
 
     //compose viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.10.0")
+
+    //직렬화
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+
 }
