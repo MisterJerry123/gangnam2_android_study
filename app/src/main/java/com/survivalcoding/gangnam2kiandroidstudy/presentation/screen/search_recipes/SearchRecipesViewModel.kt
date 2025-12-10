@@ -39,15 +39,10 @@ class SearchRecipesViewModel(
     ) {
         viewModelScope.launch {
             Log.d("SearchRecipesViewModel", "time: $time, rate: $rate, category: $category")
-            if (searchText.isNotEmpty()) {
-                _state.value = _state.value.copy(searchInputText = searchText)
-            } else {
-                _state.value = _state.value.copy(searchInputText = "")
-            }
 
 
             var filteredList = if (searchText.isNotEmpty()) {
-                cachedRecipes.filter { it.name.contains(searchText) }
+                cachedRecipes.filter { it.name.contains(searchText, ignoreCase = true) }
             } else {
                 cachedRecipes
             }
