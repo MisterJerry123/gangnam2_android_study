@@ -23,20 +23,23 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterBottomSheet(onDismiss: (time: String?, rate: String?, category: String?) -> Unit) {
-    val selectedTime = remember { mutableStateOf<String>("") }
-    val selectedRate = remember { mutableStateOf<String>("") }
-    val selectedCategory = remember { mutableStateOf<String>("") }
+fun FilterBottomSheet(
+    time: String?,
+    rate: String?,
+    category: String?,
+    onDismiss: (time: String?, rate: String?, category: String?) -> Unit
+) {
+    val selectedTime = remember { mutableStateOf<String>(time ?: "") }
+    val selectedRate = remember { mutableStateOf<String>(rate ?: "") }
+    val selectedCategory = remember { mutableStateOf<String>(category ?: "") }
 
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true,
     )
     ModalBottomSheet(
-        //modifier = Modifier.fillMaxHeight,
         dragHandle = null,
         sheetState = sheetState,
-        onDismissRequest = { onDismiss(null, null, null) }
-    ) {
+        onDismissRequest = { onDismiss(null, null, null) }) {
         Column(modifier = Modifier.padding(horizontal = 30.dp)) {
             Spacer(modifier = Modifier.height(31.dp))
             Text(
@@ -47,9 +50,7 @@ fun FilterBottomSheet(onDismiss: (time: String?, rate: String?, category: String
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                "Time",
-                modifier = Modifier.fillMaxWidth(),
-                style = AppTextStyles.smallTextBold
+                "Time", modifier = Modifier.fillMaxWidth(), style = AppTextStyles.smallTextBold
             )
             Spacer(modifier = Modifier.height(10.dp))
             Row(modifier = Modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -73,9 +74,7 @@ fun FilterBottomSheet(onDismiss: (time: String?, rate: String?, category: String
             }
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                "Rate",
-                modifier = Modifier.fillMaxWidth(),
-                style = AppTextStyles.smallTextBold
+                "Rate", modifier = Modifier.fillMaxWidth(), style = AppTextStyles.smallTextBold
             )
             Spacer(modifier = Modifier.height(10.dp))
             Row(
@@ -105,9 +104,7 @@ fun FilterBottomSheet(onDismiss: (time: String?, rate: String?, category: String
             }
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                "Category",
-                modifier = Modifier.fillMaxWidth(),
-                style = AppTextStyles.smallTextBold
+                "Category", modifier = Modifier.fillMaxWidth(), style = AppTextStyles.smallTextBold
             )
             Spacer(modifier = Modifier.height(10.dp))
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { //TODO 나중에 FlowRow로 리펙터링
@@ -177,6 +174,7 @@ fun FilterBottomSheet(onDismiss: (time: String?, rate: String?, category: String
                 Spacer(modifier = Modifier.height(30.dp))
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     SmallButton("Filter") {
+                        onDismiss(selectedTime.value, selectedRate.value, selectedCategory.value)
 
                     }
                 }
