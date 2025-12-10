@@ -60,19 +60,19 @@ fun FilterBottomSheet(
             )
             Spacer(modifier = Modifier.height(10.dp))
             Row(modifier = Modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                FilterButton("All", selectedTime.value.contains("All")) {
+                FilterButton("All", selectedTime.value == ("All")) {
                     selectedTime.value = "All"
 
                 }
-                FilterButton("Newest", selectedTime.value.contains("Newest")) {
+                FilterButton("Newest", selectedTime.value == ("Newest")) {
                     selectedTime.value = "Newest"
 
                 }
-                FilterButton("Oldest", selectedTime.value.contains("Oldest")) {
+                FilterButton("Oldest", selectedTime.value == ("Oldest")) {
                     selectedTime.value = "Oldest"
 
                 }
-                FilterButton("Popularity", selectedTime.value.contains("Popularity")) {
+                FilterButton("Popularity", selectedTime.value == ("Popularity")) {
                     selectedTime.value = "Popularity"
 
                 }
@@ -87,23 +87,23 @@ fun FilterBottomSheet(
                 modifier = Modifier,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                RatingButton("5", selectedRate.value.contains("5")) {
+                RatingButton("5", selectedRate.value == ("5")) {
                     selectedRate.value = "5"
 
                 }
-                RatingButton("4", selectedRate.value.contains("4")) {
+                RatingButton("4", selectedRate.value == ("4")) {
                     selectedRate.value = "4"
 
                 }
-                RatingButton("3", selectedRate.value.contains("3")) {
+                RatingButton("3", selectedRate.value == ("3")) {
                     selectedRate.value = "3"
 
                 }
-                RatingButton("2", selectedRate.value.contains("2")) {
+                RatingButton("2", selectedRate.value == ("2")) {
                     selectedRate.value = "2"
 
                 }
-                RatingButton("1", selectedRate.value.contains("1")) {
+                RatingButton("1", selectedRate.value == ("1")) {
                     selectedRate.value = "1"
 
                 }
@@ -118,20 +118,20 @@ fun FilterBottomSheet(
                     modifier = Modifier,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    FilterButton("All", selectedCategory.value.contains("All")) {
+                    FilterButton("All", selectedCategory.value == ("All")) {
                         selectedCategory.value = "All"
 
 
                     }
-                    FilterButton("Cereal", selectedCategory.value.contains("Cereal")) {
+                    FilterButton("Cereal", selectedCategory.value == ("Cereal")) {
                         selectedCategory.value = "Cereal"
 
                     }
-                    FilterButton("Vegetables", selectedCategory.value.contains("Vegetables")) {
+                    FilterButton("Vegetables", selectedCategory.value == ("Vegetables")) {
                         selectedCategory.value = "Vegetables"
 
                     }
-                    FilterButton("Dinner", selectedCategory.value.contains("Dinner")) {
+                    FilterButton("Dinner", selectedCategory.value == ("Dinner")) {
                         selectedCategory.value = "Dinner"
 
                     }
@@ -142,19 +142,19 @@ fun FilterBottomSheet(
                     modifier = Modifier,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    FilterButton("Chinese", selectedCategory.value.contains("Chinese")) {
+                    FilterButton("Chinese", selectedCategory.value == ("Chinese")) {
                         selectedCategory.value = "Chinese"
 
                     }
-                    FilterButton("Local Dish", selectedCategory.value.contains("Local Dish")) {
+                    FilterButton("Local Dish", selectedCategory.value == ("Local Dish")) {
                         selectedCategory.value = "Local Dish"
 
                     }
-                    FilterButton("Fruit", selectedCategory.value.contains("Fruit")) {
+                    FilterButton("Fruit", selectedCategory.value == ("Fruit")) {
                         selectedCategory.value = "Fruit"
 
                     }
-                    FilterButton("BreakFast", selectedCategory.value.contains("BreakFast")) {
+                    FilterButton("BreakFast", selectedCategory.value == ("BreakFast")) {
                         selectedCategory.value = "BreakFast"
 
                     }
@@ -163,15 +163,15 @@ fun FilterBottomSheet(
                     modifier = Modifier,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    FilterButton("Spanish", selectedCategory.value.contains("Spanish")) {
+                    FilterButton("Spanish", selectedCategory.value == ("Spanish")) {
                         selectedCategory.value = "Spanish"
 
                     }
-                    FilterButton("Chinese", selectedCategory.value.contains("Chinese")) {
+                    FilterButton("Chinese", selectedCategory.value == ("Chinese")) {
                         selectedCategory.value = "Chinese"
 
                     }
-                    FilterButton("Lunch", selectedCategory.value.contains("Lunch")) {
+                    FilterButton("Lunch", selectedCategory.value == ("Lunch")) {
                         selectedCategory.value = "Lunch"
 
                     }
