@@ -39,11 +39,6 @@ fun SmallRecipeCard(recipe: Recipe) {
             .size(150.dp)
             .clip(shape = RoundedCornerShape(10.dp))
     ) {
-        /*
-                        AsyncImage(
-                    contentScale = ContentScale.Crop,
-                )
-         */
         AsyncImage(
             model = recipe.image,
             contentDescription = "배경화면",
@@ -62,8 +57,6 @@ fun SmallRecipeCard(recipe: Recipe) {
 
             ) { // Main Box, clip 추가
                 // 배경 이미지
-
-
                 Column(modifier = Modifier.fillMaxSize()) { // 콘텐츠 Column, Box를 가득 채움
                     Row { // 이 Row는 별점 Box를 감싸는 역할만 함
                         Box(
@@ -88,7 +81,6 @@ fun SmallRecipeCard(recipe: Recipe) {
                                     modifier = Modifier.size(width = 8.dp, height = 8.dp)
                                 )
                                 Spacer(modifier = Modifier.width(3.dp))
-
                                 Text(
                                     text = "${recipe.rating}", // 실제 레시피 평점 사용
                                     style = AppTextStyles.smallerTextRegular.copy(
@@ -97,7 +89,6 @@ fun SmallRecipeCard(recipe: Recipe) {
                                     ) // 색상 지정
                                 )
                                 Spacer(modifier = Modifier.width(7.dp))
-
                             }
                         }
                     }
@@ -125,22 +116,9 @@ fun SmallRecipeCard(recipe: Recipe) {
                         }
                     }
                 }
-
-                // 오른쪽 하단 텍스트 및 원 추가
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
-                    Row(
-                        modifier = Modifier.padding(bottom = 10.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-
-                        Spacer(modifier = Modifier.width(10.dp)) // 여기에 오른쪽 여백을 추가
-                    }
-                }
             }
-
         }
     }
-
 }
 
 @Preview(showBackground = true)
