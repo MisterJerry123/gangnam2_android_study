@@ -32,34 +32,23 @@ class SearchRecipesViewModel(
         }
     }
 
-    fun changeSearchInputText(searchText: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (searchText.isEmpty()) {
-                _state.value =
-                    _state.value.copy(
-                        resultRecipes = cachedRecipes,
-                        searchInputText = "",
-                    )
-            } else {
-                _state.value =
-                    _state.value.copy(
-                        resultRecipes = cachedRecipes.filter {
-                            it.name.contains(
-                                searchText
-                            )
-                        },
-                        searchInputText = searchText,
-                    )
-            }
-        }
-    }
-
-    fun filterRecipes(time: String, rate: String, category: String) {
+    fun filterRecipes(
+        searchText: String = "",
+        time: String = "",
+        rate: String = "",
+        category: String = ""
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d("SearchRecipesViewModel", "time: $time, rate: $rate, category: $category")
-            val currentSearch = _state.value.searchInputText
-            var filteredList = if (currentSearch.isNotEmpty()) {
-                cachedRecipes.filter { it.name.contains(currentSearch, ignoreCase = true) }
+            if (searchText.isNotEmpty()) {
+                _state.value = _state.value.copy(searchInputText = searchText)
+            } else {
+                _state.value = _state.value.copy(searchInputText = "")
+            }
+
+
+            var filteredList = if (searchText.isNotEmpty()) {
+                cachedRecipes.filter { it.name.contains(searchText) }
             } else {
                 cachedRecipes
             }
