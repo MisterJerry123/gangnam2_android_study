@@ -140,7 +140,6 @@ fun SmallRecipeCard(recipe: Recipe) {
 
         }
     }
-    Spacer(modifier = Modifier.height(20.dp)) // 여기에 오른쪽 여백을 추가
 
 }
 
