@@ -73,7 +73,6 @@ fun SearchRecipesScreen(viewModel: SearchRecipesViewModel = viewModel(factory = 
                 textAlign = TextAlign.Start
             )
             Text(
-//나중에 stateflow를 collect해서 수정
                 text = if (searchRecipes.resultRecipes.isNotEmpty()) "${searchRecipes.resultRecipes.size} results" else "0 result",
                 style = AppTextStyles.smallerTextRegular.copy(color = AppColors.gray3),
                 textAlign = TextAlign.End,
