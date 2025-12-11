@@ -12,12 +12,21 @@ fun SearchRecipesRoot(viewModel: SearchRecipesViewModel = viewModel(factory = Se
     Log.d("SearchRecipesRoot", "searchRecipes: $searchRecipes")
     SearchRecipesScreen(
         state = searchRecipes,
-        onViewmodelCalled = { searchText, time, rate, category ->
+        onViewmodelCalled = { searchText, time, rate, category, enableBottomSheet ->
+            if (enableBottomSheet) {
+                viewModel.toggleBottomSheet()
+
+            } else {
+                viewModel.toggleBottomSheet()
+                viewModel.filterRecipes(searchText, time, rate, category)
+
+            }
+
             Log.d(
                 "SearchRecipesRoot",
                 "searchText: $searchText, time: $time, rate: $rate, category: $category"
             )
-            viewModel.filterRecipes(searchText, time, rate, category)
+
         }
     )
 }
