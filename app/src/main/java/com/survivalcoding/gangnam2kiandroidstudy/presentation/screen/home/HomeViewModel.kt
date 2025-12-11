@@ -16,7 +16,7 @@ class HomeViewModel(
 
 ) : ViewModel() {
 
-    private var _state = MutableStateFlow(HomeState("All"))
+    private val _state = MutableStateFlow(HomeState("All"))
     val state = _state.asStateFlow()
 
 //    init {
