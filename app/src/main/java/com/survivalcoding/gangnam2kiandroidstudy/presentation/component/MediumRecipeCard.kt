@@ -48,7 +48,7 @@ fun MediumRecipeCard(recipe: Recipe) {
                 modifier = Modifier
                     .height(176.dp)
                     .fillMaxWidth()
-                    .background(color = AppColors.gray4, shape = RoundedCornerShape(12.dp))
+                    .background(color = AppColors.gray4.copy(alpha = 0.5f), shape = RoundedCornerShape(12.dp))
             ) {
                 Column(modifier = Modifier.padding(horizontal = 10.dp)) {
                     Spacer(modifier = Modifier.height(66.dp))
