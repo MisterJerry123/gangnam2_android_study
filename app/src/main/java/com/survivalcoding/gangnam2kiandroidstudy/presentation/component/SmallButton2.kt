@@ -22,9 +22,6 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
 fun SmallButton2(text: String, isSelected: Boolean, onClick: (String) -> Unit) {
-
-    //var isSelected by remember { mutableStateOf(false) }
-
     Box(
         modifier = Modifier
             .height(height = 37.dp)
@@ -34,12 +31,9 @@ fun SmallButton2(text: String, isSelected: Boolean, onClick: (String) -> Unit) {
             )
             .clickable(
                 onClick = {
-                    if (isSelected) {
-                        onClick("")
-                    } else {
+                    if (!isSelected) {
                         onClick(text)
-
-                    }
+                    } //toggle은 안되게
                 },
 
                 ),
