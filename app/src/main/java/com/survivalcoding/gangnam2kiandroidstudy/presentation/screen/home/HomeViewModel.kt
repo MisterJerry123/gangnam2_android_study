@@ -20,13 +20,16 @@ class HomeViewModel(
 ) : ViewModel() {
     private var cachedRecipes: List<Recipe> = emptyList()
 
-    private val _state = MutableStateFlow(HomeState("All"))
+    private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
             cachedRecipes = savedRecipesRepository.getSavedRecipes()
+            _state.value =
+                _state.value.copy(selectedCategory = "All", resultRecipes = cachedRecipes)
         }
+        Log.d("HomeViewModel", "init: ${_state.value}")
     }
 
     fun onSelectedCategory(category: String) {
@@ -34,7 +37,9 @@ class HomeViewModel(
         if (category == "All") {
             _state.value =
                 _state.value.copy(selectedCategory = category, resultRecipes = cachedRecipes)
-        } else {
+        }
+
+        else {
             _state.value = _state.value.copy(
                 selectedCategory = category,
                 resultRecipes = cachedRecipes.filter { it.category == category })
