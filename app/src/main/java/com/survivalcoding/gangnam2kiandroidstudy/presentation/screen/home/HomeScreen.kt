@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.survivalcoding.gangnam2kiandroidstudy.R
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.MediumRecipeCard
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.Search
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SettingButton
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SmallButton2
@@ -116,6 +118,13 @@ fun HomeScreen(
                 }
             }
 
+
+        }
+        Spacer(modifier = Modifier.height(15.dp))
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(15.dp), contentPadding = PaddingValues(30.dp)) {
+            items(state.resultRecipes){recipe->
+                MediumRecipeCard(recipe)
+            }
 
         }
     }
