@@ -55,7 +55,7 @@ fun SearchRecipesScreen(
                         state.selectedTime,
                         state.selectedRate,
                         state.selectedCategory,
-                        state.enableBottomSheet
+                        false
                     )
                 })
             }
@@ -66,7 +66,7 @@ fun SearchRecipesScreen(
                     state.selectedTime,
                     state.selectedRate,
                     state.selectedCategory,
-                    false
+                    true
                 )
             }
         }
