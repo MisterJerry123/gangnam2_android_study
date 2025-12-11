@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.survivalcoding.gangnam2kiandroidstudy.R
@@ -48,7 +46,10 @@ fun MediumRecipeCard(recipe: Recipe) {
                 modifier = Modifier
                     .height(176.dp)
                     .fillMaxWidth()
-                    .background(color = AppColors.gray4.copy(alpha = 0.5f), shape = RoundedCornerShape(12.dp))
+                    .background(
+                        color = AppColors.gray4.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(12.dp)
+                    )
             ) {
                 Column(modifier = Modifier.padding(horizontal = 10.dp)) {
                     Spacer(modifier = Modifier.height(66.dp))
@@ -94,17 +95,18 @@ fun MediumRecipeCard(recipe: Recipe) {
 
             }
         }
-        Box(modifier = Modifier
-            .size(110.dp)
-            .clip(shape = CircleShape)
-            .align(Alignment.TopCenter), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .size(110.dp)
+                .clip(shape = CircleShape)
+                .align(Alignment.TopCenter), contentAlignment = Alignment.Center
+        ) {
             AsyncImage(
                 model = recipe.image,
                 contentDescription = "레시피 이미지",
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .fillMaxSize()
-                , contentScale = ContentScale.Crop
+                    .fillMaxSize(), contentScale = ContentScale.Crop
             )
 
         }
