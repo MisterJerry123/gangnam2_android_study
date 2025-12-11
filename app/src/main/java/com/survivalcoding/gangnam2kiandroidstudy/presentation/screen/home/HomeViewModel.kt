@@ -4,30 +4,44 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.survivalcoding.gangnam2kiandroidstudy.RecipeAppApplication
+import com.survivalcoding.gangnam2kiandroidstudy.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.repository.SavedRecipesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val savedRecipesRepository: SavedRecipesRepository
 
 ) : ViewModel() {
+    private var cachedRecipes: List<Recipe> = emptyList()
 
     private val _state = MutableStateFlow(HomeState("All"))
     val state = _state.asStateFlow()
 
-//    init {
-//        viewModelScope.launch {
-//            //val currentValue = _state.value // 또는 _state.getValue()
-//            _state.value = _state.value.copy(selectedCategory = "All")
-//        }
-//    }
+    init {
+        viewModelScope.launch {
+            cachedRecipes = savedRecipesRepository.getSavedRecipes()
+        }
+    }
 
-    fun onSelectedCategory(it: String) {
-        _state.value = _state.value.copy(selectedCategory = it)
+    fun onSelectedCategory(category: String) {
+
+        if (category == "All") {
+            _state.value =
+                _state.value.copy(selectedCategory = category, resultRecipes = cachedRecipes)
+        } else {
+            _state.value = _state.value.copy(
+                selectedCategory = category,
+                resultRecipes = cachedRecipes.filter { it.category == category })
+        }
+
+
+
         Log.d("HomeViewModel", "onSelectedCategory: ${_state.value}")
     }
 
