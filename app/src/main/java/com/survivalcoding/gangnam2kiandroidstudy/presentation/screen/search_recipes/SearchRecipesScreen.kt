@@ -16,8 +16,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -34,9 +32,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 @Composable
 fun SearchRecipesScreen(
     state: SearchRecipesState,
-    onViewmodelCalled: (searchText: String, time: String, rate: String, category: String) -> Unit
+    onViewmodelCalled: (searchText: String, time: String, rate: String, category: String, enableBottomSheet: Boolean) -> Unit
 ) {
-    val showBottomSheet = remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .padding(horizontal = 30.dp)
@@ -57,13 +54,20 @@ fun SearchRecipesScreen(
                         it,
                         state.selectedTime,
                         state.selectedRate,
-                        state.selectedCategory
+                        state.selectedCategory,
+                        state.enableBottomSheet
                     )
                 })
             }
             Spacer(modifier = Modifier.width(20.dp))
             SettingButton {
-                showBottomSheet.value = true
+                onViewmodelCalled(
+                    state.searchInputText,
+                    state.selectedTime,
+                    state.selectedRate,
+                    state.selectedCategory,
+                    false
+                )
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
@@ -92,23 +96,20 @@ fun SearchRecipesScreen(
             }
         }
     }
-    if (showBottomSheet.value) {
+    if (state.enableBottomSheet) {
         FilterBottomSheet(
             inputText = state.searchInputText,
             time = state.selectedTime,
             rate = state.selectedRate,
             category = state.selectedCategory,
-            onDismiss = { inputText, time, rate, category ->
-                showBottomSheet.value = false
+            onDismiss = { inputText, time, rate, category, enableBottomSheet ->
                 Log.d(
                     "SearchRecipesScreen",
                     "inputText: $inputText, time: $time, rate: $rate, category: $category"
                 )
+
                 onViewmodelCalled(
-                    state.searchInputText,
-                    time ?: "",
-                    rate ?: "",
-                    category ?: ""
+                    inputText ?: "", time ?: "", rate ?: "", category ?: "", !enableBottomSheet
                 )
             })
     }
@@ -117,5 +118,5 @@ fun SearchRecipesScreen(
 @Preview(showBackground = true)
 @Composable
 fun SearchRecipesScreenPreview() {
-    SearchRecipesScreen(state = SearchRecipesState(), onViewmodelCalled = { _, _, _, _ -> })
+    SearchRecipesScreen(state = SearchRecipesState(), onViewmodelCalled = { _, _, _, _, _ -> })
 }
