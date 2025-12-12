@@ -15,10 +15,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val savedRecipesRepository: SavedRecipesRepository
-
 ) : ViewModel() {
     private var cachedRecipes: List<Recipe> = emptyList()
-
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
 
@@ -32,7 +30,6 @@ class HomeViewModel(
     }
 
     fun onSelectedCategory(category: String) {
-
         if (category == "All") {
             _state.value =
                 _state.value.copy(selectedCategory = category, resultRecipes = cachedRecipes)
@@ -41,12 +38,8 @@ class HomeViewModel(
                 selectedCategory = category,
                 resultRecipes = cachedRecipes.filter { it.category == category })
         }
-
-
-
         Log.d("HomeViewModel", "onSelectedCategory: ${_state.value}")
     }
-
 
     companion object {
         fun factory(application: RecipeAppApplication): ViewModelProvider.Factory =
@@ -55,7 +48,5 @@ class HomeViewModel(
                     HomeViewModel(application.savedRecipesRepository)
                 }
             }
-
-
     }
 }
