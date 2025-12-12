@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.sign_in
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,7 +29,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(onSignUpButtonClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -109,7 +110,10 @@ fun SignInScreen() {
             Text("Don't have an account?", style = AppTextStyles.smallerTextRegular)
             Text(
                 " Sign Up",
-                style = AppTextStyles.smallerTextRegular.copy(color = AppColors.secondary100)
+                style = AppTextStyles.smallerTextRegular.copy(color = AppColors.secondary100),
+                modifier = Modifier.clickable {
+                    onSignUpButtonClick()
+                }
             )
             Spacer(modifier = Modifier.weight(1f))
 
@@ -124,5 +128,7 @@ fun SignInScreen() {
 @Preview(showBackground = true)
 @Composable
 fun SignInScreenPreview(modifier: Modifier = Modifier) {
-    SignInScreen()
+    SignInScreen() {
+
+    }
 }
