@@ -7,6 +7,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.sign_in.SignInScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.sign_up.SignUpScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.splash.SplashScreen
@@ -45,8 +46,15 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                     onSignUpButtonClick = {
                         topLevelBackStack.clear()
                         topLevelBackStack.add(Route.SignUp)
+                    },
+                    onSignInButtonClick = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.Main)
                     }
                 )
+            }
+            entry<Route.Main> {
+                HomeRoot()
             }
         }
     )
