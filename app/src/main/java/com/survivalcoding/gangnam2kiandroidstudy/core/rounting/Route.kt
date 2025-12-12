@@ -16,5 +16,17 @@ sealed interface Route : NavKey {
     @Serializable
     data object SignIn : Route
 
+    @Serializable
+    data object Home : Route
+
+    @Serializable
+    data object SavedRecipes : Route
+
+    @Serializable
+    data object Notifications : Route
+
+    @Serializable
+    data object Profile : Route
+
 
 }
