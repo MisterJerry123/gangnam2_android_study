@@ -7,7 +7,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.SavedRecipesR
 class SavedRecipesRepositoryImpl(
     private val savedRecipesDataSource: SavedRecipesDataSource
 ) : SavedRecipesRepository {
-    override suspend fun getSavedRecipes(): List<Recipe> {//TODO 나중에 Recipe으로 바꾸기
+    override suspend fun getSavedRecipes(): List<Recipe> {
         return savedRecipesDataSource.getSavedRecipes().recipes
     }
 
