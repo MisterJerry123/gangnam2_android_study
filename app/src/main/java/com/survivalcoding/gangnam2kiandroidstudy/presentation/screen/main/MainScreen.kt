@@ -15,44 +15,63 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.survivalcoding.gangnam2kiandroidstudy.R
 import com.survivalcoding.gangnam2kiandroidstudy.core.rounting.Route
+import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
 
 @Composable
 fun MainScreen(
     backStack: NavBackStack<NavKey>,
     body: @Composable () -> Unit
 ) {
-
+    val currentBackStack = backStack.lastOrNull()
     Scaffold(
         bottomBar = {
             NavigationBar {
                 NavigationBarItem(
-                    selected = backStack == Route.Home,
+                    selected = currentBackStack == Route.Home,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Home)
 
                     },
                     icon = {
-                        Icon(painter = painterResource(R.drawable.outline_home), "홈화면")
+                        if(currentBackStack== Route.Home){
+
+                            Icon(painter = painterResource(R.drawable.outline_home), "홈화면", tint = AppColors.primary100)
+                        }
+                        else{
+                            Icon(painter = painterResource(R.drawable.outline_home), "홈화면", tint = AppColors.gray4)
+
+                        }
                     },
 
                     )
                 NavigationBarItem(
-                    selected = backStack == Route.SavedRecipes,
+                    selected = currentBackStack == Route.SavedRecipes,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.SavedRecipes)
                     },
                     icon = {
-                        Icon(
-                            painter = painterResource(R.drawable.outline_bookmark_inactive),
-                            "저장된 레시피 화면"
-                        )
+                        if(currentBackStack==Route.SavedRecipes){
+                            Icon(
+                                painter = painterResource(R.drawable.outline_bookmark_inactive),
+                                "저장된 레시피 화면",
+                                tint = AppColors.primary100
+                            )
+                        }
+                        else{
+                            Icon(
+                                painter = painterResource(R.drawable.outline_bookmark_inactive),
+                                "저장된 레시피 화면",
+                                tint = AppColors.gray4
+                            )
+                        }
+
                     },
 
                     )
                 NavigationBarItem(
-                    selected = backStack == Route.Notifications,
+                    selected = currentBackStack == Route.Notifications,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Notifications)
@@ -66,7 +85,7 @@ fun MainScreen(
 
                     )
                 NavigationBarItem(
-                    selected = backStack == Route.Profile,
+                    selected = currentBackStack == Route.Profile,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Profile)
