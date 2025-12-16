@@ -25,48 +25,54 @@ fun MainScreen(
 
     Scaffold(
         bottomBar = {
-            NavigationBar{
+            NavigationBar {
                 NavigationBarItem(
-                    selected = currentBackStack==Route.Home,
+                    selected = currentBackStack == Route.Home,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Home)
-                     },
+                    },
                     icon = {
-                        Icon(painter = painterResource(R.drawable.outline_home),"홈화면")
+                        Icon(painter = painterResource(R.drawable.outline_home), "홈화면")
                     },
 
-                )
+                    )
                 NavigationBarItem(
-                    selected = currentBackStack==Route.SavedRecipes,
+                    selected = currentBackStack == Route.SavedRecipes,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.SavedRecipes)
                     },
                     icon = {
-                        Icon(painter = painterResource(R.drawable.outline_bookmark_inactive),"홈화면")
+                        Icon(
+                            painter = painterResource(R.drawable.outline_bookmark_inactive),
+                            "저장된 레시피 화면"
+                        )
                     },
 
                     )
                 NavigationBarItem(
-                    selected = currentBackStack==Route.Notifications,
+                    selected = currentBackStack == Route.Notifications,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Notifications)
                     },
                     icon = {
-                        Icon(painter = painterResource(R.drawable.outline_notification_bing),"홈화면")
+                        Icon(
+                            painter = painterResource(R.drawable.outline_notification_bing),
+                            "알림화면"
+                        )
                     },
 
                     )
                 NavigationBarItem(
-                    selected = currentBackStack==Route.Profile,
+                    selected = currentBackStack == Route.Profile,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Profile)
                     },
                     icon = {
-                        Icon(painter = painterResource(R.drawable.outline_profile),"홈화면")
+                        Icon(painter = painterResource(R.drawable.outline_profile), "프로필 화면")
                     },
 
                     )
@@ -74,8 +80,10 @@ fun MainScreen(
 
 
         }
-    ){paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
+    ) { paddingValues ->
+        Column(modifier = Modifier
+            .padding(paddingValues)
+            .fillMaxSize()) {
             body() // MainScreen의 주 내용을 호출합니다.
         }
 
