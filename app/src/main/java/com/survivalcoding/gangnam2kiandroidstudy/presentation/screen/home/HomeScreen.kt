@@ -32,8 +32,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.MediumRe
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.Search
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SettingButton
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SmallButton2
-import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
-import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppColors
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
 
 @Composable
 fun HomeScreen(
