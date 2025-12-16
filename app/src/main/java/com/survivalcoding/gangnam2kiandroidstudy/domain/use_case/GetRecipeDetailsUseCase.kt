@@ -13,10 +13,17 @@ class GetRecipeDetailsUseCase(
     suspend fun execute(id: Int): Pair<List<Ingredients>, List<Procedure>> {
 
         val recipe = savedRecipesRepository.getSavedRecipes().find { it.id == id }
-            ?: throw NoSuchElementException("Recipe with id $id not found")
-        return Pair(
-            recipe.ingredients,
-            proceduresRepository.getProcedureByRecipeId(id)
-        )
+        if (recipe != null) {
+            return Pair(
+                recipe.ingredients,
+                proceduresRepository.getProcedureByRecipeId(id)
+            )
+        } else {
+            return Pair(
+                emptyList(),
+                proceduresRepository.getProcedureByRecipeId(id)
+            )
+        }
+
     }
 }
