@@ -18,62 +18,51 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.splash.Spla
 fun NavigationRoot() {
     val topLevelBackStack = rememberNavBackStack(Route.Splash)
     NavDisplay(
-        modifier = Modifier,
-        backStack = topLevelBackStack,
-        entryDecorators = listOf(
+        modifier = Modifier, backStack = topLevelBackStack, entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator()
-        ),
-        entryProvider = entryProvider {
+        ), entryProvider = entryProvider {
             entry<Route.Splash> {
                 SplashScreen(
                     onStartButtonClick = {
                         topLevelBackStack.clear()
                         topLevelBackStack.add(Route.SignIn)
-                    }
-                )
+                    })
             }
             entry<Route.SignUp> {
                 SignUpScreen(
                     onSignInButtonClick = {
                         topLevelBackStack.clear()
                         topLevelBackStack.add(Route.SignIn)
-                    }
-                )
+                    })
             }
             entry<Route.SignIn> {
-                SignInScreen(
-                    onSignUpButtonClick = {
-                        topLevelBackStack.clear()
-                        topLevelBackStack.add(Route.SignUp)
-                    },
-                    onSignInButtonClick = {
-                        topLevelBackStack.clear()
-                        topLevelBackStack.add(Route.Main)
-                    }
-                )
+                SignInScreen(onSignUpButtonClick = {
+                    topLevelBackStack.clear()
+                    topLevelBackStack.add(Route.SignUp)
+                }, onSignInButtonClick = {
+                    topLevelBackStack.clear()
+                    topLevelBackStack.add(Route.Main)
+                })
             }
             entry<Route.Main> {
                 val backStack = rememberNavBackStack(Route.Home)
                 MainScreen(
-                    backStack = backStack,
-                    body = {
+                    backStack = backStack, body = {
                         NavDisplay(
-                            modifier = Modifier,
-                            backStack = backStack,
-                            entryProvider = entryProvider {
+                            modifier = Modifier, backStack = backStack, entryDecorators = listOf(
+                                rememberSaveableStateHolderNavEntryDecorator(),
+                                rememberViewModelStoreNavEntryDecorator()
+                            ), entryProvider = entryProvider {
                                 entry<Route.Home> { HomeRoot() }
                                 entry<Route.SavedRecipes> {
                                     SavedRecipesScreen()
                                 }
                                 entry<Route.Notifications> { HomeRoot() }
                                 entry<Route.Profile> { HomeRoot() }
-                            }
-                        )
-                    }
-                )
+                            })
+                    })
 
             }
-        }
-    )
+        })
 }
