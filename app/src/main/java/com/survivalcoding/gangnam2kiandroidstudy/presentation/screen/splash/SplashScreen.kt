@@ -102,6 +102,6 @@ fun SplashScreen(onStartButtonClick: () -> Unit) {
 
 @Preview(showBackground = true, heightDp = 812)
 @Composable
-fun SplashScreenPreview(modifier: Modifier = Modifier) {
-    //SplashScreen()
+fun SplashScreenPreview() {
+    SplashScreen({})
 }
