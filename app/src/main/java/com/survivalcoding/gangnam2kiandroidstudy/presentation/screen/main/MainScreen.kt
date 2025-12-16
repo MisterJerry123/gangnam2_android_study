@@ -21,13 +21,12 @@ fun MainScreen(
     backStack: NavBackStack<NavKey>,
     body: @Composable () -> Unit
 ) {
-    val currentBackStack = backStack
 
     Scaffold(
         bottomBar = {
             NavigationBar {
                 NavigationBarItem(
-                    selected = currentBackStack == Route.Home,
+                    selected = backStack == Route.Home,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Home)
@@ -38,7 +37,7 @@ fun MainScreen(
 
                     )
                 NavigationBarItem(
-                    selected = currentBackStack == Route.SavedRecipes,
+                    selected = backStack == Route.SavedRecipes,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.SavedRecipes)
@@ -52,7 +51,7 @@ fun MainScreen(
 
                     )
                 NavigationBarItem(
-                    selected = currentBackStack == Route.Notifications,
+                    selected = backStack == Route.Notifications,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Notifications)
@@ -66,7 +65,7 @@ fun MainScreen(
 
                     )
                 NavigationBarItem(
-                    selected = currentBackStack == Route.Profile,
+                    selected = backStack == Route.Profile,
                     onClick = {
                         backStack.clear()
                         backStack.add(Route.Profile)
