@@ -26,8 +26,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.FilterBo
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.Search
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SettingButton
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SmallRecipeCard
-import com.survivalcoding.gangnam2kiandroidstudy.ui.AppColors
-import com.survivalcoding.gangnam2kiandroidstudy.ui.AppTextStyles
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppColors
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
 
 @Composable
 fun SearchRecipesScreen(
