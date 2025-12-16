@@ -6,7 +6,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.SavedRecipesR
 class GetSavedRecipesUseCase(
     private val repository: SavedRecipesRepository
 ) {
-    suspend fun execute(): List<Recipe> {//나중에 Dto를 Recipe으로
+    suspend fun execute(): List<Recipe> {
         return repository.getSavedRecipes()
     }
 }
