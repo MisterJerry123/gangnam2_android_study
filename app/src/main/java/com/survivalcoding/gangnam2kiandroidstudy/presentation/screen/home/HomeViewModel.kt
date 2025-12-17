@@ -2,18 +2,17 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.survivalcoding.gangnam2kiandroidstudy.RecipeAppApplication
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.SavedRecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val savedRecipesRepository: SavedRecipesRepository
 ) : ViewModel() {
     private var cachedRecipes: List<Recipe> = emptyList()
@@ -39,14 +38,5 @@ class HomeViewModel(
                 resultRecipes = cachedRecipes.filter { it.category == category })
         }
         Log.d("HomeViewModel", "onSelectedCategory: ${_state.value}")
-    }
-
-    companion object {
-        fun factory(application: RecipeAppApplication): ViewModelProvider.Factory =
-            viewModelFactory {
-                initializer {
-                    HomeViewModel(application.savedRecipesRepository)
-                }
-            }
     }
 }

@@ -1,17 +1,16 @@
 package com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.survivalcoding.gangnam2kiandroidstudy.RecipeAppApplication
 import com.survivalcoding.gangnam2kiandroidstudy.domain.use_case.GetRecipeDetailsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SavedRecipeDetailsViewModel(
+@HiltViewModel
+class SavedRecipeDetailsViewModel @Inject constructor(
     private val getRecipeDetailsUseCase: GetRecipeDetailsUseCase,
 ) : ViewModel() {
 
@@ -29,15 +28,5 @@ class SavedRecipeDetailsViewModel(
 
     fun changeValue(isSelectIngredient: Boolean) {
         _state.value = _state.value.copy(isSelectIngredient = isSelectIngredient)
-    }
-
-
-    companion object {
-        fun factory(application: RecipeAppApplication): ViewModelProvider.Factory =
-            viewModelFactory {
-                initializer {
-                    SavedRecipeDetailsViewModel(application.savedRecipeDetailsUseCase)
-                }
-            }
     }
 }

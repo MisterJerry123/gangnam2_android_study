@@ -2,21 +2,19 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.search_rec
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.survivalcoding.gangnam2kiandroidstudy.RecipeAppApplication
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.repository.SavedRecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(FlowPreview::class)
-class SearchRecipesViewModel(
+@HiltViewModel
+class SearchRecipesViewModel @Inject constructor(
     private val savedRecipesRepository: SavedRecipesRepository
 ) : ViewModel() {
     private var _state = MutableStateFlow(SearchRecipesState())
@@ -80,15 +78,5 @@ class SearchRecipesViewModel(
         }
     }
 
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val savedRecipeRepository =
-                    (this[APPLICATION_KEY] as RecipeAppApplication).savedRecipesRepository
-                SearchRecipesViewModel(
-                    savedRecipesRepository = savedRecipeRepository,
-                )
-            }
-        }
-    }
+
 }
