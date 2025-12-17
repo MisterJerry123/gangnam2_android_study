@@ -1,9 +1,10 @@
 package com.survivalcoding.gangnam2kiandroidstudy.data.data_source.procedure
 
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Procedures
+import jakarta.inject.Inject
 import kotlinx.serialization.json.Json
 
-class ProcedureDataSourceImpl : ProcedureDataSource {
+class ProcedureDataSourceImpl @Inject constructor() : ProcedureDataSource {
     override suspend fun getAllProcedures(): Procedures {
         val file = """{
   "procedures": [

@@ -2,8 +2,9 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.data_source.savedRecipes
 
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipes
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
-class SavedRecipesDataSourceImpl : SavedRecipesDataSource {
+class SavedRecipesDataSourceImpl @Inject constructor() : SavedRecipesDataSource {
     override fun getSavedRecipes(): Recipes {
         val file = """{
   "recipes": [
