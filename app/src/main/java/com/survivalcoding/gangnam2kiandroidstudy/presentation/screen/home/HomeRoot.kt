@@ -6,10 +6,17 @@ import androidx.compose.runtime.getValue
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeRoot(viewModel: HomeViewModel = koinViewModel(), onSearchClicked: () -> Unit = {}) {
+fun HomeRoot(viewModel: HomeViewModel = koinViewModel(), onAction: (HomeAction) -> Unit) {
     val homeState by viewModel.state.collectAsState()
     HomeScreen(
         homeState,
-        onViewmodelCalled = { viewModel.onSelectedCategory(it) },
-        onSearchClicked = { onSearchClicked() })
+        onAction = { action ->
+            when (action) {
+                HomeAction.OnSearchClicked -> onAction(HomeAction.OnSearchClicked)
+                is HomeAction.OnViewmodelCalled -> viewModel.onAction(action)
+                is HomeAction.OnRecipeItemClicked -> onAction(HomeAction.OnRecipeItemClicked(action.recipe))
+            }
+        }
+
+    )
 }

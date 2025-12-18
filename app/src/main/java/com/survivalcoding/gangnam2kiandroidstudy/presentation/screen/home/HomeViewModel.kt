@@ -25,7 +25,15 @@ class HomeViewModel(
         Log.d("HomeViewModel", "init: ${_state.value}")
     }
 
-    fun onSelectedCategory(category: String) {
+    fun onAction(action: HomeAction) {
+        when (action) {
+            is HomeAction.OnViewmodelCalled -> onSelectedCategory(action.recipeName)
+            else -> Unit
+        }
+
+    }
+
+    private fun onSelectedCategory(category: String) {
         if (category == "All") {
             _state.value =
                 _state.value.copy(selectedCategory = category, resultRecipes = cachedRecipes)
