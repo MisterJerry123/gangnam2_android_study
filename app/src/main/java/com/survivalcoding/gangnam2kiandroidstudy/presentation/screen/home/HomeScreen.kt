@@ -38,7 +38,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
 @Composable
 fun HomeScreen(
     state: HomeState,
-    onViewmodelCalled: (String) -> Unit
+    onViewmodelCalled: (String) -> Unit,
+    onSearchClicked: () -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(64.dp))
@@ -76,12 +77,11 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(30.dp))
         Row(modifier = Modifier.padding(horizontal = 30.dp)) {
             Box(modifier = Modifier.weight(1f)) {
-//                Search() {
-//                    //TODO 디자인 완성 후 콜백 구현
-//                }
-                CustomSearchField {
-
-                }
+                CustomSearchField(
+                    onValueChange = {}, onClick = {
+                        onSearchClicked()
+                    }, enableSearch = false
+                )
             }
             Spacer(modifier = Modifier.width(20.dp))
             SettingButton {
@@ -134,6 +134,6 @@ fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen(state = HomeState(), onViewmodelCalled = { "All" })
+    //HomeScreen(state = HomeState(), onViewmodelCalled = { "All" })
 }
 
