@@ -6,6 +6,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeAction
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.main.MainScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.SavedRecipeItemRoot
@@ -57,8 +58,18 @@ fun NavigationRoot() {
                                 rememberViewModelStoreNavEntryDecorator()
                             ), entryProvider = entryProvider {
                                 entry<Route.Home> {
-                                    HomeRoot(onSearchClicked = {
-                                        topLevelBackStack.add(Route.Search)
+                                    HomeRoot(onAction = { action ->
+                                        when (action) {
+                                            is HomeAction.OnRecipeItemClicked -> topLevelBackStack.add(
+                                                Route.RecipeItem(action.recipe)
+                                            )
+
+                                            HomeAction.OnSearchClicked -> topLevelBackStack.add(
+                                                Route.Search
+                                            )
+
+                                            is HomeAction.OnViewmodelCalled -> Unit
+                                        }
                                     })
                                 }
                                 entry<Route.SavedRecipes> {
@@ -67,8 +78,8 @@ fun NavigationRoot() {
                                     })
                                 }
 
-                                entry<Route.Notifications> { HomeRoot() }
-                                entry<Route.Profile> { HomeRoot() }
+                                entry<Route.Notifications> { }
+                                entry<Route.Profile> { }
 
                             })
 
