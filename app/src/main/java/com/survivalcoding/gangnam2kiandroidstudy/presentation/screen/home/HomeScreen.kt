@@ -37,6 +37,7 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SettingB
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.component.SmallButton2
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.json.Json
 
 @Composable
@@ -146,7 +147,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp),
             contentPadding = PaddingValues(horizontal = 30.dp)
         ) {
-            items(state.resultRecipes) {recipe->//TODO 일단을 recipe 그대로 사용
+            items(state.resultRecipes) { recipe ->//TODO 일단을 recipe 그대로 사용
                 NewRecipesCard(recipe, onAction = onAction)
             }
         }
@@ -158,9 +159,12 @@ fun HomeScreen(
 @Composable
 private fun HomeScreenPreview() {
 
-    val mockList = Json.decodeFromString<Recipes>(MOCK)
+    val mockList =
+        Json.decodeFromString<Recipes>(MOCK)
 
 
-    HomeScreen(state = HomeState(resultRecipes = mockList.recipes), onAction = {})
+    HomeScreen(
+        state = HomeState(resultRecipes = mockList.recipes.toImmutableList()),
+        onAction = {})
 }
 
