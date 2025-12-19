@@ -2,6 +2,7 @@ package com.survivalcoding.gangnam2kiandroidstudy.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,11 @@ import kotlinx.serialization.json.Json
 
 @Composable
 fun NewRecipesCard(recipe: Recipe, onAction: (HomeAction) -> Unit) {
-    Box(modifier = Modifier.size(width = 251.dp, height = 127.dp)) {
+    Box(
+        modifier = Modifier
+            .size(width = 251.dp, height = 127.dp)
+            .clickable(onClick = { onAction(HomeAction.OnRecipeItemClicked(recipe = recipe)) })
+    ) {
         Column(modifier = Modifier) {
             Spacer(modifier = Modifier.height(32.dp))
             Box(
