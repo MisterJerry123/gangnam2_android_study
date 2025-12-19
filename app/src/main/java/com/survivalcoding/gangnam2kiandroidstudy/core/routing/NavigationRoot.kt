@@ -6,7 +6,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeAction
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.main.MainScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.SavedRecipeItemRoot
@@ -58,19 +57,13 @@ fun NavigationRoot() {
                                 rememberViewModelStoreNavEntryDecorator()
                             ), entryProvider = entryProvider {
                                 entry<Route.Home> {
-                                    HomeRoot(onAction = { action ->
-                                        when (action) {
-                                            is HomeAction.OnRecipeItemClicked -> topLevelBackStack.add(
-                                                Route.RecipeItem(action.recipe)
-                                            )
-
-                                            HomeAction.OnSearchClicked -> topLevelBackStack.add(
+                                    HomeRoot(
+                                        onSearchClicked = {
+                                            topLevelBackStack.add(
                                                 Route.Search
                                             )
-
-                                            is HomeAction.OnViewmodelCalled -> Unit
-                                        }
-                                    })
+                                        },
+                                        onRecipeItemClicked = { Route.RecipeItem(it) })
                                 }
                                 entry<Route.SavedRecipes> {
                                     SavedRecipesRoot(onRecipeClick = {
