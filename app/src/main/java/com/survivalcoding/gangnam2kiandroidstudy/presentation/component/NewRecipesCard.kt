@@ -32,12 +32,13 @@ import com.survivalcoding.gangnam2kiandroidstudy.R
 import com.survivalcoding.gangnam2kiandroidstudy.core.MOCK
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipe
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipes
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeAction
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppColors
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
 import kotlinx.serialization.json.Json
 
 @Composable
-fun NewRecipesCard(recipe: Recipe) {
+fun NewRecipesCard(recipe: Recipe, onAction: (HomeAction) -> Unit) {
     Box(modifier = Modifier.size(width = 251.dp, height = 127.dp)) {
         Column(modifier = Modifier) {
             Spacer(modifier = Modifier.height(32.dp))
@@ -178,6 +179,6 @@ fun NewRecipesCard(recipe: Recipe) {
 @Composable
 private fun NewRecipesCardPreview() {
     val mock = Json.decodeFromString<Recipes>(MOCK)
-    NewRecipesCard(mock.recipes[0])
+    NewRecipesCard(mock.recipes[0]) {}
 
 }

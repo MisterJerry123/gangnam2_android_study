@@ -147,7 +147,7 @@ fun HomeScreen(
             contentPadding = PaddingValues(horizontal = 30.dp)
         ) {
             items(state.resultRecipes) {recipe->//TODO 일단을 recipe 그대로 사용
-                NewRecipesCard(recipe)
+                NewRecipesCard(recipe, onAction = onAction)
             }
         }
         Spacer(modifier = Modifier.height(104.dp))
