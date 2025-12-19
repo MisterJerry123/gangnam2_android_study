@@ -1,11 +1,13 @@
 package com.survivalcoding.gangnam2kiandroidstudy.core.routing
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.survivalcoding.gangnam2kiandroidstudy.core.util.NetworkObserver
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.home.HomeRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.main.MainScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.SavedRecipeItemRoot
@@ -13,7 +15,8 @@ import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.saved_recip
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.search_recipes.SearchRecipesRoot
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.sign_in.SignInScreen
 import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.sign_up.SignUpScreen
-import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.splash.SplashScreen
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.splash.SplashRoot
+import com.survivalcoding.gangnam2kiandroidstudy.presentation.screen.splash.SplashViewModel
 
 @Composable
 fun NavigationRoot() {
@@ -24,11 +27,13 @@ fun NavigationRoot() {
             rememberViewModelStoreNavEntryDecorator()
         ), entryProvider = entryProvider {
             entry<Route.Splash> {
-                SplashScreen(
+                SplashRoot(
                     onStartButtonClick = {
                         topLevelBackStack.clear()
                         topLevelBackStack.add(Route.SignIn)
-                    })
+                    },
+                    viewModel = SplashViewModel(NetworkObserver(LocalContext.current))
+                )
             }
             entry<Route.SignUp> {
                 SignUpScreen(
