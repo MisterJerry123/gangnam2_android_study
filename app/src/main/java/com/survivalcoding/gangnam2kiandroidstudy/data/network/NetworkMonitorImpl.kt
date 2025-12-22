@@ -2,7 +2,6 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.network
 
 import android.net.ConnectivityManager
 import android.net.Network
-import android.util.Log
 import com.survivalcoding.gangnam2kiandroidstudy.domain.network.NetworkMonitor
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -22,11 +21,11 @@ class NetworkMonitorImpl(
             }
 
         }
+        connectivityManager.registerDefaultNetworkCallback(result)
+
         val isInitialConnected = connectivityManager.activeNetwork != null
         trySend(isInitialConnected)
-        Log.d("SplashRoot", "NetworkMonitorImpl: $isInitialConnected")
 
-        connectivityManager.registerDefaultNetworkCallback(result)
         awaitClose {
             connectivityManager.unregisterNetworkCallback(result)
         }
