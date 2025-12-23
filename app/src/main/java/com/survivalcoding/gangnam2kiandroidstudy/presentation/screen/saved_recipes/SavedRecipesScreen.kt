@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +32,7 @@ fun SavedRecipesScreen(
     lazyListState: LazyListState
 ) {
 
-    LaunchedEffect(lazyListState, state.savedRecipesList.size) {
+    LaunchedEffect(lazyListState) {
         snapshotFlow {
             val currentIndex = lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
             currentIndex == state.savedRecipesList.size - 1
