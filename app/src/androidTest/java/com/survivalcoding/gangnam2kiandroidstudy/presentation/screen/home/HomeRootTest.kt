@@ -124,4 +124,27 @@ class HomeRootTest {
         composeTestRule.waitForIdle()
         assertFalse(viewModel.state.value.resultRecipes.find { it.id == 1 }?.isSaved == true)
     }
+
+    @Test
+    fun showNoRecipesTextWhenListIsEmpty() {
+        val fakeRepository = object : RecipesRepository {
+            override suspend fun getAllRecipes(): List<Recipe> = emptyList()
+            override suspend fun getSavedRecipes(): List<Recipe> = emptyList()
+            override suspend fun deleteSavedRecipe(id: Int) {}
+        }
+
+        val viewModel = HomeViewModel(fakeRepository)
+
+        composeTestRule.setContent {
+            HomeRoot(
+                viewModel = viewModel,
+                onSearchClicked = {},
+                onRecipeItemClicked = {}
+            )
+        }
+
+        composeTestRule.waitForIdle()
+
+        composeTestRule.onNodeWithText("레시피 없음").assertExists()
+    }
 }

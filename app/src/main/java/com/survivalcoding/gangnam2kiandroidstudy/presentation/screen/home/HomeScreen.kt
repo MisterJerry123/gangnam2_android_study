@@ -130,16 +130,30 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(15.dp),
             contentPadding = PaddingValues(horizontal = 30.dp)
         ) {
-            items(state.resultRecipes) { recipe ->
-                MediumRecipeCard(
-                    recipe,
-                    onAction = { onAction(HomeAction.OnRecipeItemClicked(recipe)) },
-                    onClickRecipeSaveButton = if (recipe.isSaved) {
-                        { onDeleteSavedRecipe(recipe) }
-                    } else {
-                        { onAddSavedRecipe(recipe) }
+            if (state.resultRecipes.isEmpty()) {
+                item {
+                    Box(
+                        modifier = Modifier.height(231.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "레시피 없음",
+                            style = AppTextStyles.normalTextBold.copy(color = AppColors.gray3)
+                        )
                     }
-                )
+                }
+            } else {
+                items(state.resultRecipes) { recipe ->
+                    MediumRecipeCard(
+                        recipe,
+                        onAction = { onAction(HomeAction.OnRecipeItemClicked(recipe)) },
+                        onClickRecipeSaveButton = if (recipe.isSaved) {
+                            { onDeleteSavedRecipe(recipe) }
+                        } else {
+                            { onAddSavedRecipe(recipe) }
+                        }
+                    )
+                }
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
