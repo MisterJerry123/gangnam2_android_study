@@ -29,15 +29,8 @@ class SavedRecipeDetailsViewModel(
         _state.value = _state.value.copy(isSelectIngredient = isSelectIngredient)
     }
 
-    fun toggleMenu(isShowCommand: Boolean){
-        if(isShowCommand){
-            _state.value = _state.value.copy(isDrowDownMenuShow = true)
-        }
-        else{
-            _state.value = _state.value.copy(isDrowDownMenuShow = false)
-
-        }
-
+    fun toggleMenu(isShowCommand: Boolean) {
+        _state.value = _state.value.copy(isDrowDownMenuShow = isShowCommand)
     }
 
     fun toggleShareDialog(isShow: Boolean) {
