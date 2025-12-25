@@ -403,7 +403,7 @@ private fun SavedRecipeItemScreenPreview() {
         state = SavedRecipeDetailsState(isSelectIngredient = false),
         recipe = mockRecipe,
         procedure = mockProcedure,
-        { 0 },
+        {},
         {},
         {},
         {},
