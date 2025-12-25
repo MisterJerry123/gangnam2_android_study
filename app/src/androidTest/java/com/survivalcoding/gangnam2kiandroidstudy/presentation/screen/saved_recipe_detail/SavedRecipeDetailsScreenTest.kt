@@ -87,6 +87,6 @@ class SavedRecipeDetailsScreenTest {
         // 3. Copy Link 버튼 클릭 및 클립보드 복사(콜백) 확인
         composeTestRule.onNodeWithText("Copy Link").performClick()
 
-        assertEquals("app.Recipe.co/jollof_rice", capturedLink)
+        assertEquals("app.Recipe.co/recipe?id=${mockRecipe.id}", capturedLink)
     }
 }

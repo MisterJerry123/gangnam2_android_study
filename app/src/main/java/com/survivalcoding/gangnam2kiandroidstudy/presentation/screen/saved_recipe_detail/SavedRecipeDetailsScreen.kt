@@ -313,7 +313,7 @@ fun SavedRecipeItemScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "app.Recipe.co/jollof_rice",
+                                text = "app.Recipe.co/recipe?id=${recipe.id}",
                                 style = AppTextStyles.smallTextRegular.copy(
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 11.sp
@@ -325,7 +325,7 @@ fun SavedRecipeItemScreen(
                                 overflow = TextOverflow.Ellipsis
                             )
                             Button(
-                                onClick = { onCopyLink("app.Recipe.co/jollof_rice") },
+                                onClick = { onCopyLink("app.Recipe.co/recipe?id=${recipe.id}") },
                                 shape = RoundedCornerShape(9.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = AppColors.primary100),
                                 modifier = Modifier
