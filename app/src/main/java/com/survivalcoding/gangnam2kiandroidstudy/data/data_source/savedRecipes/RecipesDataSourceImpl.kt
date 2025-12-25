@@ -3,8 +3,8 @@ package com.survivalcoding.gangnam2kiandroidstudy.data.data_source.savedRecipes
 import com.survivalcoding.gangnam2kiandroidstudy.domain.model.Recipes
 import kotlinx.serialization.json.Json
 
-class SavedRecipesDataSourceImpl : SavedRecipesDataSource {
-    override fun getSavedRecipes(): Recipes {
+class RecipesDataSourceImpl : RecipesDataSource {
+    override fun getAllRecipes(): Recipes {
         val file = """{
   "recipes": [
     {
@@ -337,6 +337,6 @@ class SavedRecipesDataSourceImpl : SavedRecipesDataSource {
     }
 
     override fun deleteSavedRecipe(id: Int) {
-        // No-op for hardcoded data source
+
     }
 }
