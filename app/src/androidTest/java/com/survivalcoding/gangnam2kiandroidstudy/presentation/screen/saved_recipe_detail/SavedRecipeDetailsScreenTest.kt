@@ -54,7 +54,7 @@ class SavedRecipeDetailsScreenTest {
                 onValueChanged = {},
                 onBackButtonClicked = {},
                 onMoreButtonClicked = { show ->
-                    state = state.copy(isDrowDownMenuShow = show)
+                    state = state.copy(isDropDownMenuShow = show)
                 },
                 onShareDialogRequest = { show ->
                     // Share 클릭 시 메뉴는 닫히고 다이얼로그가 뜸 (Screen 로직 확인 필요)

@@ -92,7 +92,7 @@ fun SavedRecipeItemScreen(
                         modifier = Modifier.clickable(onClick = { onMoreButtonClicked(true) })
                     )
                     DropdownMenu(
-                        expanded = state.isDrowDownMenuShow,
+                        expanded = state.isDropDownMenuShow,
                         onDismissRequest = { onMoreButtonClicked(false) }
                     ) {
                         DropdownMenuItem(
@@ -245,7 +245,7 @@ fun SavedRecipeItemScreen(
         }
 
         // 통합 Scrim (메뉴 또는 다이얼로그가 떠있을 때)
-        if (state.isDrowDownMenuShow || state.isShareDialogShow) {
+        if (state.isDropDownMenuShow || state.isShareDialogShow) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -255,7 +255,7 @@ fun SavedRecipeItemScreen(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
                     ) {
-                        if (state.isDrowDownMenuShow) onMoreButtonClicked(false)
+                        if (state.isDropDownMenuShow) onMoreButtonClicked(false)
                         if (state.isShareDialogShow) onShareDialogRequest(false)
                     }
             )

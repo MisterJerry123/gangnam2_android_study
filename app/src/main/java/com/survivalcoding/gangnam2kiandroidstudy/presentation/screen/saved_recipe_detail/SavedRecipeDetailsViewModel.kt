@@ -30,7 +30,7 @@ class SavedRecipeDetailsViewModel(
     }
 
     fun toggleMenu(isShowCommand: Boolean) {
-        _state.value = _state.value.copy(isDrowDownMenuShow = isShowCommand)
+        _state.value = _state.value.copy(isDropDownMenuShow = isShowCommand)
     }
 
     fun toggleShareDialog(isShow: Boolean) {
