@@ -5,6 +5,9 @@ import kotlinx.serialization.json.Json
 
 class RecipesDataSourceImpl : RecipesDataSource {
     override fun getAllRecipes(): Recipes {
+        val emptyFile = """{
+  "recipes": []
+}"""
         val file = """{
   "recipes": [
     {
