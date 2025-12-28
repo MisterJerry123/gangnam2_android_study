@@ -34,6 +34,17 @@
                     android:host="recipe.misterjerry.com"
                     android:scheme="app" />
             </intent-filter>
+
+            <!-- App Links 설정 (HTTPS) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" android:host="misterjerry-androidstudy.web.app" />
+                <data android:scheme="http" android:host="misterjerry-androidstudy.web.app" />
+            </intent-filter>
         </activity>
     </application>
 

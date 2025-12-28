@@ -25,7 +25,13 @@ fun NavigationRoot(deepLinkUri: String?) {
     LaunchedEffect(deepLinkUri) {
         if (deepLinkUri != null) {
             val uri = deepLinkUri.toUri()
-            if (uri.scheme == "app" && uri.host == "recipe.misterjerry.com") {
+            // 호스트 확인 (커스텀 스킴 또는 Firebase 호스팅 도메인)
+            val isValidHost = (uri.scheme == "app" && uri.host == "recipe.misterjerry.com") ||
+                              ((uri.scheme == "https" || uri.scheme == "http") && uri.host == "misterjerry-androidstudy.web.app")
+
+            if (isValidHost) {
+                // 경로 처리 (/saved 또는 /saved/{id} 등)
+                // 예: https://my-app.web.app/saved -> path: /saved
                 if (uri.path == "/saved") {
                     topLevelBackStack.clear()
                     backStack.clear()
@@ -33,6 +39,7 @@ fun NavigationRoot(deepLinkUri: String?) {
                     topLevelBackStack.add(Route.Main)
                     backStack.add(Route.SavedRecipes)
                 } else {
+                    // 숫자로 된 ID가 경로의 마지막에 있는지 확인
                     val recipeId = uri.lastPathSegment?.toIntOrNull()
 
                     if (recipeId != null) {
@@ -44,11 +51,8 @@ fun NavigationRoot(deepLinkUri: String?) {
                         topLevelBackStack.add(Route.RecipeItem(recipeId))
                     }
                 }
-
-
             }
         }
-
     }
     NavDisplay(
         backStack = topLevelBackStack, entryDecorators = listOf(

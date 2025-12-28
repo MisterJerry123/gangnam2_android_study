@@ -22,5 +22,10 @@ class MainActivity : ComponentActivity() {
             NavigationRoot(deepLinkUri = deepLinkUri)
         }
     }
+
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent)
+        deepLinkUri = intent.dataString
+    }
 }
 
