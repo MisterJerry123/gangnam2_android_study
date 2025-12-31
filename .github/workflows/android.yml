@@ -51,3 +51,15 @@ jobs:
             **/build/reports/tests/
             **/build/reports/lint-results*.html
             **/build/reports/lint-results*.xml
+      # 5. 디스코드 알림 단계 추가
+      - name: Discord notification
+        if: always()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          title: "Android CI Build Status"
+          description: |
+            **Result:** ${{ job.status }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.event.head_commit.message }}
