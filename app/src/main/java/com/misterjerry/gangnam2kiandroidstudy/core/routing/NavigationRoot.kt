@@ -13,8 +13,8 @@ import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.main.MainScree
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.SavedRecipeItemRoot
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipes.SavedRecipesRoot
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.search_recipes.SearchRecipesRoot
-import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.sign_in.SignInScreen
-import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.sign_up.SignUpScreen
+import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.sign_in.SignInRoot
+import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.sign_up.SignUpRoot
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.splash.SplashRoot
 
 @Composable
@@ -27,7 +27,7 @@ fun NavigationRoot(deepLinkUri: String?) {
             val uri = deepLinkUri.toUri()
             // 호스트 확인 (커스텀 스킴 또는 Firebase 호스팅 도메인)
             val isValidHost = (uri.scheme == "app" && uri.host == "recipe.misterjerry.com") ||
-                              ((uri.scheme == "https" || uri.scheme == "http") && uri.host == "misterjerry-androidstudy.web.app")
+                    ((uri.scheme == "https" || uri.scheme == "http") && uri.host == "misterjerry-androidstudy.web.app")
 
             if (isValidHost) {
                 // 경로 처리 (/saved 또는 /saved/{id} 등)
@@ -68,20 +68,26 @@ fun NavigationRoot(deepLinkUri: String?) {
                 )
             }
             entry<Route.SignUp> {
-                SignUpScreen(
-                    onSignInButtonClick = {
-                        topLevelBackStack.clear()
-                        topLevelBackStack.add(Route.SignIn)
-                    })
-            }
-            entry<Route.SignIn> {
-                SignInScreen(onSignUpButtonClick = {
-                    topLevelBackStack.clear()
-                    topLevelBackStack.add(Route.SignUp)
-                }, onSignInButtonClick = {
+                SignUpRoot(onLoginSuccess = {
                     topLevelBackStack.clear()
                     topLevelBackStack.add(Route.Main)
                 })
+            }
+            entry<Route.SignIn> {
+                SignInRoot(
+                    onSignUpButtonClick = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.SignUp)
+                    },
+                    onSignInButtonClick = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.Main)
+                    },
+                    onLoginSuccess = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.Main)
+                    }
+                )
             }
 
             entry<Route.Main> {
