@@ -7,6 +7,8 @@ plugins {
     //직렬화
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+    //firebase
+    id("com.google.gms.google-services")
 
 }
 
@@ -119,5 +121,13 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     testImplementation(libs.androidx.room.testing)
     ksp(libs.androidx.room.compiler)
+    //firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
+    //firebase auth
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 }
