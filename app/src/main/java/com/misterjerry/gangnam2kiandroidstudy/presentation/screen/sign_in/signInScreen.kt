@@ -29,7 +29,14 @@ import com.misterjerry.gangnam2kiandroidstudy.presentation.ui.AppColors
 import com.misterjerry.gangnam2kiandroidstudy.presentation.ui.AppTextStyles
 
 @Composable
-fun SignInScreen(onSignUpButtonClick: () -> Unit, onSignInButtonClick: () -> Unit) {
+fun SignInScreen(
+    state: SignInState,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onSignUpButtonClick: () -> Unit,
+    onSignInButtonClick: () -> Unit,
+    onGoogleButtonClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,13 +47,19 @@ fun SignInScreen(onSignUpButtonClick: () -> Unit, onSignInButtonClick: () -> Uni
         Text("Hello,", style = AppTextStyles.headerTextBold)
         Text("welcome Back!", style = AppTextStyles.largeTextRegular)
         Spacer(modifier = Modifier.height(57.dp))
-        InputField(label = "Email", placeholder = "Enter Email", value = "", onValueChange = {})
+        InputField(
+            label = "Email",
+            placeholder = "Enter Email",
+            value = state.email,
+            onValueChange = onEmailChange
+        )
         Spacer(modifier = Modifier.height(30.dp))
         InputField(
             label = "Enter Password",
             placeholder = "Enter Password",
-            value = "",
-            onValueChange = {})
+            value = state.password,
+            onValueChange = onPasswordChange
+        )
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             "Forgot Password?",
@@ -82,7 +95,8 @@ fun SignInScreen(onSignUpButtonClick: () -> Unit, onSignInButtonClick: () -> Uni
                         color = AppColors.white,
                         shape = RoundedCornerShape(10.dp)
                     )
-                    .size(44.dp),
+                    .size(44.dp)
+                    .clickable { onGoogleButtonClick() },
                 contentAlignment = Alignment.Center
             ) {
                 Image(painterResource(R.drawable.social_icons_google), contentDescription = "구글로고")
@@ -124,5 +138,12 @@ fun SignInScreen(onSignUpButtonClick: () -> Unit, onSignInButtonClick: () -> Uni
 @Preview(showBackground = true)
 @Composable
 fun SignInScreenPreview(modifier: Modifier = Modifier) {
-    SignInScreen({}, {})
+    SignInScreen(
+        state = SignInState(),
+        onEmailChange = {},
+        onPasswordChange = {},
+        onSignUpButtonClick = {},
+        onSignInButtonClick = {},
+        onGoogleButtonClick = {}
+    )
 }
