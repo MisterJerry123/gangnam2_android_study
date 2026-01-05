@@ -10,7 +10,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun SignUpRoot(
     viewmodel: SignUpViewModel = koinViewModel(),
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: () -> Unit,
+    onSignInButtonClicked: () -> Unit
 ) {
     val context = LocalContext.current
     val state by viewmodel.state.collectAsState()
@@ -28,6 +29,6 @@ fun SignUpRoot(
         onPasswordChange = viewmodel::onPasswordChange,
         onConfirmPasswordChange = viewmodel::onConfirmPasswordChange,
         onSignUpButtonClick = viewmodel::signUpWithEmail,
-        onSignInButtonClick = {},
+        onSignInButtonClick = { onSignInButtonClicked() },
         onGoogleButtonClick = { viewmodel.signInWithGoogle(context) })
 }

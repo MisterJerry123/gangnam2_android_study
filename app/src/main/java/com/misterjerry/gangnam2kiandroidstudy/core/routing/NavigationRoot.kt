@@ -68,10 +68,15 @@ fun NavigationRoot(deepLinkUri: String?) {
                 )
             }
             entry<Route.SignUp> {
-                SignUpRoot(onLoginSuccess = {
-                    topLevelBackStack.clear()
-                    topLevelBackStack.add(Route.Main)
-                })
+                SignUpRoot(
+                    onLoginSuccess = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.Main)
+                    },
+                    onSignInButtonClicked = {
+                        topLevelBackStack.clear()
+                        topLevelBackStack.add(Route.SignIn)
+                    })
             }
             entry<Route.SignIn> {
                 SignInRoot(
