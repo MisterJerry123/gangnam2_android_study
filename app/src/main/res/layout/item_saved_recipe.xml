@@ -52,6 +52,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/legacy_bookmark_button"
         android:padding="4dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/outline_bookmark_inactive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
