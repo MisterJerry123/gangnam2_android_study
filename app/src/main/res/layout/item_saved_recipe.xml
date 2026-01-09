@@ -7,11 +7,10 @@
     android:layout_marginBottom="20dp">
 
     <ImageView
+        android:id="@+id/iv_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
         android:scaleType="centerCrop"
-        android:src="@drawable/regacy_reciclerview_item_sample"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +99,7 @@
         app:layout_constraintTop_toTopOf="@id/iv_rating_background" />
 
     <TextView
+        android:id="@+id/tv_rating"
         style="@style/SmallerTextRegular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
