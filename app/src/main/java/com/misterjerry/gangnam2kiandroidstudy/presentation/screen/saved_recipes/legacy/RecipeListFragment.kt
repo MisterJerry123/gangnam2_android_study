@@ -26,19 +26,25 @@ class RecipeListFragment : Fragment(), RecipeListAdapter.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (_binding != null) { //binding을 최초 1회만 시행하여 이전 스크롤 상태를 기억하게 함
+            return binding.root
+        }
         _binding = FragmentRecipeListBinding.inflate(inflater, container, false)
+
+        val adapter = RecipeListAdapter(viewModel.state.value.savedRecipesList)
+        adapter.setOnItemClickListener(this@RecipeListFragment)
+        binding.rcv.adapter = adapter
+        binding.rcv.layoutManager = LinearLayoutManager(requireContext())
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = binding.rcv
-        val adapter = RecipeListAdapter(viewModel.state.value.savedRecipesList)
-        adapter.setOnItemClickListener(this@RecipeListFragment)
-        recyclerView.adapter = adapter
+        val adapter = binding.rcv.adapter as? RecipeListAdapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
-                adapter.updateList(it.savedRecipesList)
+                adapter?.updateList(it.savedRecipesList)
             }
         }
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
