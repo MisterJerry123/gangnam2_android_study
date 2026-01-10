@@ -12,7 +12,7 @@ import com.misterjerry.gangnam2kiandroidstudy.databinding.ItemSavedRecipeBinding
 import com.misterjerry.gangnam2kiandroidstudy.domain.model.Recipe
 
 class RecipeListAdapter(
-    private val recipeList: List<Recipe>,
+    recipeList: List<Recipe>,
 ) : RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
