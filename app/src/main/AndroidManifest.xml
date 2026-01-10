@@ -31,11 +31,11 @@
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Gangnam2kiAndroidStudy">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <!-- Deep Links 설정 -->
             <intent-filter>
@@ -66,9 +66,14 @@
             외부 앱에 '저장된 레시피' 데이터를 제공하기 위한 Provider입니다.
             exported="true": 외부 앱에서 접근을 허용합니다.
         -->
+        <!--        <provider-->
+        <!--            android:name=".data.provider.RecipeProvider"-->
+        <!--            android:authorities="com.misterjerry.gangnam2kiandroidstudy.provider"-->
+        <!--            android:exported="true" />-->
+
         <provider
             android:name=".data.provider.RecipeProvider"
-            android:authorities="com.misterjerry.gangnam2kiandroidstudy.provider"
+            android:authorities="${providerAuthority}"
             android:exported="true" />
     </application>
 
