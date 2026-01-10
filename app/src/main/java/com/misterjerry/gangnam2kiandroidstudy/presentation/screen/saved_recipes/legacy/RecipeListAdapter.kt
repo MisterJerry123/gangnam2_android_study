@@ -39,7 +39,7 @@ class RecipeListAdapter(
             binding.tvTime.text = recipe.time
             binding.btnBookmark.apply {
                 setImageResource(R.drawable.outline_bookmark_inactive)
-                val color = if (recipe.isSaved) "#71B1A1" else "#9E9E9E"
+                val color = "#71B1A1" //if (recipe.isSaved) "#71B1A1" else "#9E9E9E"
                 imageTintList = ColorStateList.valueOf(color.toColorInt())
             }
             binding.ivBackground.load(
