@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.misterjerry.gangnam2kiandroidstudy.R
 import com.misterjerry.gangnam2kiandroidstudy.databinding.FragmentRecipeListBinding
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipes.SavedRecipesViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class RecipeListFragment : Fragment() {
+class RecipeListFragment : Fragment(), RecipeListAdapter.OnItemClickListener {
 
     private var _binding: FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +37,7 @@ class RecipeListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 val adapter = RecipeListAdapter(it.savedRecipesList)
+                adapter.setOnItemClickListener(this@RecipeListFragment)
                 recyclerView.adapter = adapter
             }
         }
@@ -47,5 +50,12 @@ class RecipeListFragment : Fragment() {
 
     }
 
-
+    override fun onItemClicked(pos: Int) {
+        val fragment =
+            SavedRecipeDetailFragment.newInstance(viewModel.state.value.savedRecipesList[pos].name)
+        parentFragmentManager.commit {
+            replace(R.id.fcv, fragment)
+            addToBackStack(null)
+        }
+    }
 }

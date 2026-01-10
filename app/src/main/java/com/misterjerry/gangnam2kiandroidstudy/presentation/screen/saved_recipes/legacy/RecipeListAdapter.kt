@@ -1,28 +1,55 @@
 package com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipes.legacy
 
 import android.content.res.ColorStateList
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.misterjerry.gangnam2kiandroidstudy.R
+import com.misterjerry.gangnam2kiandroidstudy.databinding.ItemSavedRecipeBinding
 import com.misterjerry.gangnam2kiandroidstudy.domain.model.Recipe
 
 class RecipeListAdapter(
     private val recipeList: List<Recipe>
 ) : RecyclerView.Adapter<RecipeListAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val rating: TextView = view.findViewById(R.id.tv_rating)
-        val recipeName: TextView = view.findViewById(R.id.tv_recipe_name)
-        val chefName: TextView = view.findViewById(R.id.tv_chef_name)
-        val time: TextView = view.findViewById(R.id.tv_time)
-        val bookMarkIcon: ImageView = view.findViewById(R.id.btn_bookmark)
-        val card: ImageView = view.findViewById(R.id.iv_background)
+
+    interface OnItemClickListener {
+        fun onItemClicked(pos: Int)
+    }
+
+    //클릭 리스너 정의
+    private var onItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
+    }
+
+    inner class ViewHolder(private val binding: ItemSavedRecipeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(recipe: Recipe) {
+            binding.tvRating.text = recipe.rating.toString()
+            binding.tvRecipeName.text = recipe.name
+            binding.tvChefName.text = recipe.chef
+            binding.tvTime.text = recipe.time
+            binding.btnBookmark.apply {
+                setImageResource(R.drawable.outline_bookmark_inactive)
+                val color = if (recipe.isSaved) "#71B1A1" else "#9E9E9E"
+                imageTintList = ColorStateList.valueOf(color.toColorInt())
+            }
+            binding.ivBackground.load(
+                data = recipe.image
+            )
+            binding.root.setOnClickListener {
+                val pos = getAbsoluteAdapterPosition() // 현재 아이템의 위치
+                if (pos != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.onItemClicked(pos)
+                }
+
+            }
+        }
+
 
     }
 
@@ -31,32 +58,17 @@ class RecipeListAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_saved_recipe, parent, false)
-
-        return ViewHolder(view)
-
+        val binding =
+            ItemSavedRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int
     ) {
-        Log.d("onBindViewHolder", "onBindViewHolder: $position")
-        holder.rating.text = recipeList[position].rating.toString()
-        holder.recipeName.text = recipeList[position].name
-        holder.chefName.text = "By ${recipeList[position].chef}"
-        holder.time.text = "${recipeList[position].time} min"
-        if (recipeList[position].isSaved) {
-            holder.bookMarkIcon.imageTintList = ColorStateList.valueOf(Color.parseColor("#71B1A1"))
-        } else {
-            holder.bookMarkIcon.imageTintList = ColorStateList.valueOf(Color.parseColor("#A9A9A9"))
-        }
-        holder.card.load(recipeList[position].image)
+        holder.bind(recipeList[position])
     }
 
     override fun getItemCount(): Int = recipeList.size
-
-
 }
