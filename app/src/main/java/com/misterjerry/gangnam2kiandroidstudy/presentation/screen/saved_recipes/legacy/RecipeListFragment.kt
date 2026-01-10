@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.misterjerry.gangnam2kiandroidstudy.R
 import com.misterjerry.gangnam2kiandroidstudy.databinding.FragmentRecipeListBinding
+import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.legacy.SavedRecipeDetailFragment
 import com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipes.SavedRecipesViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

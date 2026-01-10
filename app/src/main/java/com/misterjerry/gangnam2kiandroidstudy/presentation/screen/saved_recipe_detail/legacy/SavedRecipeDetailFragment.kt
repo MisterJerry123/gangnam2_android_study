@@ -1,4 +1,4 @@
-package com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipes.legacy
+package com.misterjerry.gangnam2kiandroidstudy.presentation.screen.saved_recipe_detail.legacy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -49,4 +49,3 @@ class SavedRecipeDetailFragment() : Fragment() {
         }
     }
 }
-
